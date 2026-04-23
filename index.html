@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KUH-1CG CDU - Advanced PERF & External Links</title>
+    <title>KUH-1CG CDU - Active Functions Highlight</title>
     <style>
         :root {
             --bg-dark: #050505;
@@ -48,6 +48,24 @@
         .freq-stby { color: var(--text-cyan); font-size: 10px; font-weight: bold; }
         .swap-arrow { font-size: 10px; color: #777; cursor: pointer; padding: 2px; z-index: 10;}
         .green-ind { color: var(--text-green); font-size: 8px; font-weight: bold; text-align: center; line-height: 1.1; }
+
+        /* --- 기능 활성화 버튼 시각적 강조 스타일 --- */
+        .func-active {
+            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.25) 0%, #444 40%, #1a1a1a 100%) !important;
+            border-top: 1px solid rgba(135, 206, 235, 0.6) !important;
+            transition: background 0.1s ease;
+        }
+        .func-active:active {
+            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.4) 0%, #555 40%, #222 100%) !important;
+        }
+        .top-func-btn {
+            background: linear-gradient(to bottom, rgba(135, 206, 235, 0.2) 0%, transparent 80%);
+            transition: background 0.1s ease;
+        }
+        .top-func-btn:active {
+            background: rgba(135, 206, 235, 0.35);
+        }
+        /* ------------------------------------- */
 
         /* Titles and Sub-headers */
         .mode-title-bar { background: linear-gradient(to bottom, #555, #111);
@@ -127,11 +145,11 @@
         
         <div class="header-grid">
             <div class="header-box" style="padding:0; gap:0;">
-                <div style="flex:1; width:100%; display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="switchMode('AUDIO'); switchAudioTab('COM');">
+                <div class="top-func-btn" style="flex:1; width:100%; display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="switchMode('AUDIO'); switchAudioTab('COM');">
                     <div class="header-label" style="line-height:1.2;">Audio &<br>Radios</div>
                 </div>
                 <div style="width:80%; height:1px; background:#333;"></div>
-                <div style="flex:1; width:100%; display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="switchMode('INTERCOM')">
+                <div class="top-func-btn" style="flex:1; width:100%; display:flex; align-items:center; justify-content:center; cursor:pointer;" onclick="switchMode('INTERCOM')">
                     <div class="header-label">Intercom</div>
                 </div>
             </div>
@@ -369,7 +387,7 @@
         perfResults.ige_gonogo = getIGEfromOGE(oge19k).toFixed(1);
     }
 
-    // --- High-fidelity SVG Icons for Home Screen ---
+    // --- High-fidelity SVG Icons ---
     const homeButtons = [
         { id: 'map', text: 'Map<br>Settings', icon: '<svg viewBox="0 0 100 100"><rect x="15" y="25" width="70" height="50" fill="#4caf50" rx="3"/><path d="M30 75 L50 25 L70 75" fill="#81c784"/><circle cx="50" cy="50" r="15" fill="none" stroke="#fff" stroke-width="4"/><line x1="20" y1="20" x2="45" y2="45" stroke="#ccc" stroke-width="8" stroke-linecap="round"/></svg>' },
         { id: 'traffic', text: 'Traffic', icon: '<svg viewBox="0 0 100 100"><polygon points="30,30 40,50 20,50" fill="#0ff"/><polygon points="70,50 80,70 60,70" fill="#fff"/><line x1="30" y1="20" x2="30" y2="10" stroke="#0ff" stroke-width="4"/><polygon points="25,15 30,5 35,15" fill="#0ff"/><line x1="70" y1="80" x2="70" y2="90" stroke="#fff" stroke-width="4"/><polygon points="65,85 70,95 75,85" fill="#fff"/></svg>' },
@@ -444,17 +462,20 @@
                     'serv': "https://thdenfl.tistory.com"
                 };
 
+                let isActiveBtn = ['weather', 'charts', 'fpl', 'serv', 'sys', 'perf'].includes(btn.id);
+                let boxClass = isActiveBtn ? 'icon-box func-active' : 'icon-box';
+
                 if (links[btn.id]) {
                     gridHtml += `
                         <a href="${links[btn.id]}" target="_blank" class="home-icon-wrapper" style="text-decoration:none; color:inherit;">
-                            <div class="icon-box">${btn.icon}</div>
+                            <div class="${boxClass}">${btn.icon}</div>
                             <div class="icon-label">${btn.text}</div>
                         </a>`;
                 } else {
                     let clickAction = btn.id === 'sys' ? `onclick="switchMode('AUDIO'); switchAudioTab('COM');"` : (btn.id === 'perf' ? `onclick="switchMode('PERF')"` : '');
                     gridHtml += `
                         <div class="home-icon-wrapper" ${clickAction}>
-                            <div class="icon-box">${btn.icon}</div>
+                            <div class="${boxClass}">${btn.icon}</div>
                             <div class="icon-label">${btn.text}</div>
                         </div>`;
                 }
@@ -1119,9 +1140,8 @@
             hasStartedTyping = true;
         }
         if (selcalInput.length >= 4) return;
-        if (selcalInput.includes(char)) return; // 중복 문자 방지
+        if (selcalInput.includes(char)) return; 
 
-        // 알파벳 순서 검증 (전반 2문자, 후반 2문자)
         if (selcalInput.length === 1 && char <= selcalInput[0]) return;
         if (selcalInput.length === 3 && char <= selcalInput[2]) return;
 
