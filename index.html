@@ -427,11 +427,11 @@
         perfResults.ige = getIGEfromOGE(finalOGE).toFixed(1);
         perfResults.ige_gonogo = getIGEfromOGE(oge19k).toFixed(1);
 
-        // 4. Vy (Best Rate of Climb Speed)
+        // 4. Vy
         let vyCalc = interpolate2D(vyTemps, vyWeights, vyData, cTemp, wt);
         perfResults.vy = vyCalc.toFixed(1);
 
-        // 5. Climb / Descent Torque Margin
+        // 5. VS Torque Margin
         let absVs = Math.abs(vs);
         let vsTqCalc = 0;
         if (vs > 0) {
@@ -558,7 +558,7 @@
                 </div>
                 
                 <div style="display:flex; gap:8px; height:100%;">
-                    <div style="flex:1; display:flex; flex-direction:column; gap:8px;">
+                    <div style="flex:1; display:flex; flex-direction:column; gap:8px; justify-content:flex-start;">
                         <div>
                             <div class="perf-label">ALTITUDE (FT)</div>
                             <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'alt')">${perfData.alt}</div>
@@ -579,7 +579,7 @@
                     
                     <div style="width:1px; background:#333;"></div>
 
-                    <div style="flex:1.4; display:flex; flex-direction:column; justify-content:center; gap: 6px;">
+                    <div style="flex:1.4; display:flex; flex-direction:column; justify-content:flex-start; gap: 6px;">
                         <div style="display:flex; gap:5px;">
                             <div style="flex:1;">
                                 <div class="perf-result-title">IGE TQ</div>
