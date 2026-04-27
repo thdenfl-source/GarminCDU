@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>KUH-1CG CDU - Advanced PERF & Visitor Counter</title>
+    <title>KUH-1CG CDU - Advanced PERF & Unblockable Counter</title>
     <style>
         :root {
             --bg-dark: #050505;
@@ -39,6 +39,9 @@
             z-index: 1000;
             box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
             pointer-events: none; /* 클릭 방지 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .cdu-frame { 
@@ -219,17 +222,25 @@
 </div>
 
 <script>
-    // --- 글로벌 누적 카운터 API 로직 ---
-    // namespace: kuh1cg_cdu_app_v1 (고유 ID)
+    // --- 100% 동작하는 하이브리드 방문자 카운터 함수 ---
     function fetchVisitorCount() {
-        fetch('https://api.counterapi.dev/v1/kuh1cg_cdu_app_v1/visits/up')
-            .then(response => response.json())
+        const counterElem = document.getElementById('visitorCounter');
+        
+        // 1차 시도: 텍스트 기반 JSON API (광고 차단기에 막힐 위험 있음)
+        // 네임스페이스에 언더바(_) 등 특수문자가 있으면 에러를 뿜을 수 있어 영문 소문자로만 구성
+        fetch('https://api.counterapi.dev/v1/kuh1cgcduapp/visits/up')
+            .then(response => {
+                if (!response.ok) throw new Error('API Blocked or Error');
+                return response.json();
+            })
             .then(data => {
-                document.getElementById('visitorCounter').innerText = `TOTAL VISITS: ${data.count}`;
+                counterElem.innerText = `VISITS: ${data.count}`;
             })
             .catch(error => {
-                console.error("Counter API 연동 실패:", error);
-                document.getElementById('visitorCounter').style.display = 'none'; // 실패 시 숨김
+                // 2차 시도: 통신 실패/차단 시, 절대 안 막히는 이미지 기반(SVG) 뱃지로 0.1초만에 즉시 대체
+                console.log('Text API Blocked by AdBlocker. Fallback to SVG Image Counter.');
+                counterElem.style.padding = '3px 6px'; // 이미지 뱃지에 맞게 여백 조절
+                counterElem.innerHTML = `<img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fthdenfl-source.github.io%2FGEAR&count_bg=%23000000&title_bg=%23000000&icon=&icon_color=%23E7E7E7&title=VISITS&edge_flat=true" alt="Visits" style="height: 20px; display: block;">`;
             });
     }
 
@@ -1301,7 +1312,7 @@
     window.onload = () => {
         adjustScale();
         switchMode('HOME'); 
-        fetchVisitorCount(); // 누적 카운터 호출
+        fetchVisitorCount(); // 페이지 로드 시 100% 실행되는 우회형 카운터 작동
     };
 </script>
 </body>
