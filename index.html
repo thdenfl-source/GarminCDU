@@ -86,9 +86,14 @@
         #mainContentArea { flex: 1; display: flex; flex-direction: column; padding: 7px; overflow-y: auto; }
         .panel-border { flex: 1; border: 1.5px solid var(--active-blue); border-radius: 5px; padding: 8px; background: black; display: flex; flex-direction: column; }
 
-        /* Common Buttons */
+        /* Common Buttons with enhanced active states for touch feedback */
         .item-btn { height: 35px; background: var(--btn-grad); border: var(--border-3d);
             color: white; font-size: 8px; display: flex; flex-direction: column; justify-content: center; align-items: center; cursor: pointer; border-radius: 4px; position: relative; text-align: center;
+            transition: transform 0.05s, background 0.1s;
+        }
+        .item-btn:active {
+            background: linear-gradient(to bottom, #555, #222, #111); 
+            transform: scale(0.96);
         }
         .status-line { position: absolute; bottom: 3px; width: 70%; height: 2px; background: #333; border-radius: 1.5px; }
         .on .status-line { background: var(--text-green); box-shadow: 0 0 3px var(--text-green); }
@@ -100,41 +105,59 @@
         .wedge-text { position: absolute; left: 7px; top: 8px; font-size: 8px; color: var(--active-blue); font-weight: bold; z-index: 3; pointer-events: none; }
 
         /* Audio Radios */
-        .freq-display-box { height: 35px; background: #0a0a0a; border: 0.7px solid #444; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; padding-right: 5px; border-radius: 4px; cursor: pointer; }
+        .freq-display-box { height: 35px; background: #0a0a0a; border: 0.7px solid #444; display: flex; flex-direction: column; justify-content: center; align-items: flex-end; padding-right: 5px; border-radius: 4px; cursor: pointer; transition: background 0.1s; }
+        .freq-display-box:active { background: #1a1a1a; }
 
         /* Intercom Grid */
         .intercom-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 5px; }
         .loop-row { display: flex; gap: 8px; margin-top: 10px; }
 
-        /* Numpad */
+        /* Numpad with optimized touch targets */
         .input-row { display: flex; align-items: center; justify-content: center; gap: 7px; margin: 10px 0 20px 0; }
         .freq-box-main { width: 120px; height: 40px; background: #000; border: 1.5px solid #555; border-radius: 4px; color: var(--text-green); font-size: 22px; display: flex; align-items: center; justify-content: center; font-family: monospace; }
-        .numpad-grid { display: grid; grid-template-columns: repeat(3, 60px); gap: 10px; justify-content: center; }
+        .numpad-grid { display: grid; grid-template-columns: repeat(3, 65px); gap: 12px; justify-content: center; }
         .xpdr-numpad-grid { display: grid; grid-template-columns: repeat(4, 55px); gap: 10px; justify-content: center; margin-bottom: 15px;}
         .selcal-grid { display: grid; grid-template-columns: repeat(5, 45px); gap: 8px; justify-content: center; }
-        .num-circle { width: 50px; height: 50px; background: radial-gradient(circle at 30% 30%, #444, #111); border: 0.7px solid #555; border-radius: 50%; color: white; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 3px 5px rgba(0,0,0,0.6); }
+        
+        .num-circle { 
+            width: 55px; height: 55px; /* Increased touch target */
+            background: radial-gradient(circle at 30% 30%, #444, #111); border: 0.7px solid #555; border-radius: 50%; color: white; font-size: 18px; font-weight: bold; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 3px 5px rgba(0,0,0,0.6); 
+            transition: transform 0.05s, background 0.1s;
+        }
+        .num-circle:active {
+            background: radial-gradient(circle at 30% 30%, #666, #222);
+            box-shadow: inset 0 3px 6px rgba(0,0,0,0.8);
+            transform: scale(0.95);
+        }
 
         /* Footer */
         .footer-nav { height: 53px; display: flex; justify-content: space-around; align-items: center; background: #111; border-top: 1.5px solid #333; padding: 0 5px; }
-        .nav-btn { background: var(--btn-grad); border: var(--border-3d); border-radius: 5px; padding: 6px; min-width: 45px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; font-size: 7px; color: white; }
+        .nav-btn { background: var(--btn-grad); border: var(--border-3d); border-radius: 5px; padding: 6px; min-width: 45px; display: flex; flex-direction: column; align-items: center; gap: 3px; cursor: pointer; font-size: 7px; color: white; transition: transform 0.05s, background 0.1s; }
+        .nav-btn:active { background: linear-gradient(to bottom, #555, #222, #111); transform: scale(0.95); }
         .nav-btn span { font-size: 14px; pointer-events: none; }
         .enter-btn-blue { background: #1a2a4a; border: 1px solid var(--active-blue); }
+        .enter-btn-blue:active { background: #2a4a7a; }
 
         .status-footer { height: 25px; background: #111; display: grid; grid-template-columns: 1fr 1.5fr 1fr; border-top: 0.7px solid #333; font-size: 6px; color: #ccc; align-items: center; padding: 0 7px; text-align: center; }
         
         /* Home Grid */
         .home-grid { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 15px 5px; padding: 5px; }
         .home-icon-wrapper { width: 23%; display: flex; flex-direction: column; align-items: center; cursor: pointer; text-decoration: none; color: inherit; }
-        .icon-box { width: 45px; height: 45px; background: linear-gradient(to bottom, #444, #1a1a1a); border-radius: 8px; border: 1px solid #555; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.6); }
+        .icon-box { width: 45px; height: 45px; background: linear-gradient(to bottom, #444, #1a1a1a); border-radius: 8px; border: 1px solid #555; display: flex; align-items: center; justify-content: center; margin-bottom: 5px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.6); transition: transform 0.05s; }
+        .icon-box:active { transform: scale(0.92); }
         .icon-box svg { width: 70%; height: 70%; }
         .icon-label { font-size: 8px; color: #eee; text-align: center; font-weight: bold; line-height: 1.1; pointer-events: none; }
         
         /* PERF Page Styles */
         .perf-row { display: flex; justify-content: space-between; margin-bottom: 12px; align-items: center; }
         .perf-label { font-size: 8px; color: #ccc; margin-bottom: 2px; }
-        .perf-val-box { border: 1px solid var(--active-blue); background: #000; padding: 4px 8px; border-radius: 4px; color: var(--text-green); font-size: 12px; font-weight: bold; min-width: 50px; text-align: center; cursor: pointer; }
+        .perf-val-box { border: 1px solid var(--active-blue); background: #000; padding: 4px 8px; border-radius: 4px; color: var(--text-green); font-size: 12px; font-weight: bold; min-width: 50px; text-align: center; cursor: pointer; transition: background 0.1s; }
+        .perf-val-box:active { background: #222; }
         .perf-result-box { background: #1a1a1a; border: 1px solid #555; padding: 3px 2px; border-radius: 4px; color: white; font-size: 11px; font-weight: bold; min-width: 45px; text-align: center; display: flex; align-items: center; justify-content: center; }
         .perf-result-title { font-size: 6.5px; color: var(--text-cyan); text-align: center; margin-bottom: 2px; line-height: 1.1; }
+        
+        /* Error/Warning Animation */
+        @keyframes blink { 50% { opacity: 0.4; } }
     </style>
 </head>
 <body>
@@ -248,7 +271,7 @@
 
     // --- EXACT EXCEL PERF DATA ENGINE ---
     let perfData = { alt: "0", temp: "20", weight: "16000", vs: "0" };
-    let perfResults = { oge: "0.0", ige: "0.0", oge_gonogo: "0.0", ige_gonogo: "0.0", mta30: "0.0", mta10: "0.0", mta25: "0.0", vy: "0.0", vsTq: "0.0" };
+    let perfResults = { oge: "0.0", ige: "0.0", oge_gonogo: "0.0", ige_gonogo: "0.0", mta30: "0.0", mta10: "0.0", mta25: "0.0", vy: "0.0", vsTq: "0.0", outOfLimits: false };
 
     // Vy Tables
     const vyTemps = [-32, -20, -10, 0, 10, 20, 30, 40];
@@ -362,6 +385,9 @@
         let temp = parseFloat(perfData.temp) || 0;
         let wt = parseFloat(perfData.weight) || 16000;
         let vs = parseFloat(perfData.vs) || 0;
+
+        // 경고 검증 로직 추가
+        perfResults.outOfLimits = (alt > 14000 || temp > 40 || temp < -34);
 
         let cAlt = Math.max(0, Math.min(14000, alt));
         let cTemp = Math.max(-34, Math.min(40, temp));
@@ -501,6 +527,508 @@
         renderContent();
     }
 
+    // --- Modularized Render Functions ---
+    
+    function renderHomeScreen(container, footer, title, centerLabel) {
+        title.innerText = "Home";
+        centerLabel.innerText = "CDU HOME";
+        
+        let gridHtml = `<div class="home-grid">`;
+        homeButtons.forEach(btn => {
+            const links = {
+                'weather': "https://customwidgethosting.web.app/embed.html?ffCompiledSrc=https%3A%2F%2Fstorage.googleapis.com%2Fflutterflow-io-6f20.appspot.com%2Fbuild_outputs%2Fintegrated-flight-preparation-assistant-mlvjyo%2Fweb%2FQMZqWepPgY9jqDmcO2Uu%2Fmain.dart.js",
+                'charts': "https://aim.koca.go.kr/eaipPub/Package/history-en-GB.html?language=ko_KR",
+                'fpl': "https://thdenfl-source.github.io/Locus/",
+                'serv': "https://thdenfl.tistory.com",
+                'as565': "https://thdenfl-source.github.io/AS565/"
+            };
+
+            let isActiveBtn = ['weather', 'charts', 'fpl', 'serv', 'sys', 'perf', 'as565'].includes(btn.id);
+            let boxClass = isActiveBtn ? 'icon-box func-active' : 'icon-box';
+
+            if (links[btn.id]) {
+                gridHtml += `
+                    <a href="${links[btn.id]}" target="_blank" class="home-icon-wrapper" style="text-decoration:none; color:inherit;">
+                        <div class="${boxClass}">${btn.icon}</div>
+                        <div class="icon-label">${btn.text}</div>
+                    </a>`;
+            } else {
+                let clickAction = btn.id === 'sys' ? `onclick="switchMode('AUDIO'); switchAudioTab('COM');"` : (btn.id === 'perf' ? `onclick="switchMode('PERF')"` : '');
+                gridHtml += `
+                    <div class="home-icon-wrapper" ${clickAction}>
+                        <div class="${boxClass}">${btn.icon}</div>
+                        <div class="icon-label">${btn.text}</div>
+                    </div>`;
+            }
+        });
+        gridHtml += `</div>`;
+        container.innerHTML = gridHtml;
+        footer.innerHTML = `<div class="nav-btn"><span>✔️</span>INIT</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" onclick="switchMode('AUDIO'); switchAudioTab('COM');"><span>✥</span>Full</div>`;
+    }
+
+    function renderPerfScreen(container, footer, title, centerLabel) {
+        calculatePerformance(); 
+        title.innerText = "Performance (Hover & Climb)";
+        centerLabel.innerText = "Flight Data";
+        
+        let warningHtml = perfResults.outOfLimits ? 
+            `<div style="background-color:#3a0000; border:1px solid #f44336; color:#f44336; font-size:9px; font-weight:bold; text-align:center; padding:3px; border-radius:3px; margin-bottom:8px; animation: blink 1.5s infinite;">⚠️ CAUTION: OUT OF CHART LIMITS (Data Capped)</div>` : '';
+
+        container.innerHTML = `
+            ${warningHtml}
+            <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 5px 5px 5px; border-bottom:1px solid #333; margin-bottom:10px;">
+                <span style="color:white; font-size:10px; font-weight:bold;">CONDITIONS</span>
+                <span style="color:white; font-size:10px; font-weight:bold;">RESULTS</span>
+            </div>
+            
+            <div style="display:flex; gap:8px; height:100%;">
+                <div style="flex:1; display:flex; flex-direction:column; gap:8px; justify-content:flex-start;">
+                    <div>
+                        <div class="perf-label">ALTITUDE (FT)</div>
+                        <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'alt')">${perfData.alt}</div>
+                    </div>
+                    <div>
+                        <div class="perf-label">TEMP (OAT °C)</div>
+                        <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'temp')">${perfData.temp}</div>
+                    </div>
+                    <div>
+                        <div class="perf-label">GROSS WT (LBS)</div>
+                        <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'weight')">${perfData.weight}</div>
+                    </div>
+                    <div>
+                        <div class="perf-label">V/S (FPM)</div>
+                        <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'vs')">${perfData.vs}</div>
+                    </div>
+                </div>
+                
+                <div style="width:1px; background:#333;"></div>
+
+                <div style="flex:1.4; display:flex; flex-direction:column; justify-content:flex-start; gap: 6px;">
+                    <div style="display:flex; gap:5px;">
+                        <div style="flex:1;">
+                            <div class="perf-result-title">IGE TQ</div>
+                            <div class="perf-result-box" style="color:#0f0;">${perfResults.ige}%</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="perf-result-title">OGE TQ</div>
+                            <div class="perf-result-box" style="color:#0f0;">${perfResults.oge}%</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:5px;">
+                        <div style="flex:1;">
+                            <div class="perf-result-title">IGE GO/NO-GO</div>
+                            <div class="perf-result-box" style="color:#ff9800;">${perfResults.ige_gonogo}%</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="perf-result-title">OGE GO/NO-GO</div>
+                            <div class="perf-result-box" style="color:#ff9800;">${perfResults.oge_gonogo}%</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:5px;">
+                        <div style="flex:1;">
+                            <div class="perf-result-title">Vy (IAS)</div>
+                            <div class="perf-result-box" style="color:#fff;">${perfResults.vy} KT</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="perf-result-title">V/S ∆TQ</div>
+                            <div class="perf-result-box" style="color:#fff;">${perfResults.vsTq}%</div>
+                        </div>
+                    </div>
+                    <div style="display:flex; gap:5px;">
+                        <div style="flex:1;">
+                            <div class="perf-result-title">MTA(30)</div>
+                            <div class="perf-result-box" style="color:var(--text-cyan); font-size:10.5px;">${perfResults.mta30}%</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="perf-result-title">MTA(10)</div>
+                            <div class="perf-result-box" style="color:yellow; font-size:10.5px;">${perfResults.mta10}%</div>
+                        </div>
+                        <div style="flex:1;">
+                            <div class="perf-result-title">MTA(2.5)</div>
+                            <div class="perf-result-box" style="color:#f44336; font-size:10.5px;">${perfResults.mta25}%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div>`;
+    }
+
+    function renderPerfInputScreen(container, footer, title) {
+        let titleText = inputTarget === 'alt' ? 'ALTITUDE' : 
+                        (inputTarget === 'temp' ? 'TEMPERATURE' : 
+                        (inputTarget === 'vs' ? 'VERTICAL SPEED (FPM)' : 'GROSS WEIGHT'));
+        title.innerText = `${titleText} ENTRY`;
+        
+        let displayVal = !hasStartedTyping ? perfData[inputTarget] : currentInput;
+        if (displayVal === "") displayVal = "0";
+
+        container.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; padding-top:20px;">
+            <div class="input-row" style="margin-top:0;">
+                <div class="freq-box-main" style="width:150px;">${displayVal}</div>
+                <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceInput()">⬅<br>Bksp</div>
+            </div>
+            <div class="numpad-grid" style="margin-top:10px;">
+                ${[1,2,3,4,5,6,7,8,9].map(n => `<div class="num-circle" onclick="addInput('${n}')">${n}</div>`).join('')}
+                <div class="num-circle" onclick="addInput('-')">-</div>
+                <div class="num-circle" onclick="addInput('0')">0</div>
+                <div></div>
+            </div></div>`;
+        
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('PERF')"><span>↩</span>Cancel</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div></div><div class="nav-btn enter-btn-blue" onclick="confirmPerfInput()"><span>↩</span>Enter</div>`;
+    }
+
+    function renderAudioScreen(container, footer, title, centerLabel) {
+        title.innerText = "Audio & Radios";
+        centerLabel.innerText = `CoPilot ${audioTab === 'Mission' ? 'VHF-FM' : (audioTab === 'Other' ? 'PA' : inputTarget.toUpperCase())} Volume`;
+        
+        let audioContent = '';
+
+        if (audioTab === 'COM') {
+            audioContent = `
+                <div style="display:flex; justify-content:space-between; font-size:7px; color:#888; margin-bottom:5px; padding: 0 60px 0 100px;">
+                    <span>Volume</span><span>Control</span>
+                </div>
+                ${renderAudioRow('COM1', 'com1')} 
+                ${renderAudioRow('COM2', 'com2')} 
+                ${renderAudioRow('U/VHF', 'uvhf')}
+                <div class="volume-row">
+                    <div class="item-btn">▶<br>Playback</div>
+                    <div class="wedge-slider" style="grid-column: span 2;" onpointerdown="handleVol('pb', event)">
+                        <span class="wedge-text">${volumes.pb}%</span>
+                        <div class="wedge-fill" style="width:${volumes.pb}%"></div>
+                    </div>
+                    <div style="display:flex; gap:3px;">
+                        <button class="item-btn" style="width:30px; height:35px;">|◀</button>
+                        <button class="item-btn" style="width:30px; height:35px;">▶|</button>
+                    </div>
+                </div>
+            `;
+        } 
+        else if (audioTab === 'NAV') {
+            audioContent = `
+                <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 70px 0 80px;">
+                    <span>Volume</span><span>Control</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 60px 1fr 80px; align-items: center; margin-bottom: 7px; gap: 6px;">
+                    <div class="item-btn ${monStates.speaker?'on':''}" onclick="toggleMon('speaker')">Speaker<div class="status-line"></div></div>
+                    <div class="wedge-slider" onpointerdown="handleVol('speaker', event)">
+                        <span class="wedge-text">${volumes.speaker}%</span>
+                        <div class="wedge-fill" style="width:${volumes.speaker}%"></div>
+                    </div>
+                    <div></div>
+                </div>
+                <div style="display: grid; grid-template-columns: 60px 1fr 80px; align-items: center; margin-bottom: 7px; gap: 6px;">
+                    <div class="item-btn">▶<br>Playback</div>
+                    <div class="wedge-slider" onpointerdown="handleVol('pb', event)">
+                        <span class="wedge-text">${volumes.pb}%</span>
+                        <div class="wedge-fill" style="width:${volumes.pb}%"></div>
+                    </div>
+                    <div style="display:flex; gap:4px;">
+                        <button class="item-btn" style="flex:1; height:35px; font-size:9px;">|◀◀</button>
+                        <button class="item-btn" style="flex:1; height:35px; font-size:9px;">▶▶|</button>
+                    </div>
+                </div>
+                ${renderNavRow('NAV1', 'nav1')}
+                ${renderNavRow('NAV2', 'nav2')}
+            `;
+        }
+        else if (audioTab === 'Mission') {
+            audioContent = `
+                <div style="margin-bottom: 6px;">
+                    <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 45px 0 130px;">
+                        <span>Volume</span><span>Control</span>
+                    </div>
+                    ${renderMissionRow('VHF-FM', 'vhffm')}
+                </div>
+                <div style="margin-bottom: 6px;">
+                    ${renderMissionRow('HF', 'hf')}
+                </div>
+                <div class="volume-row">
+                    <div class="item-btn ${monStates.selcal?'on':''}" onclick="toggleMon('selcal')">SELCAL<div class="status-line"></div></div>
+                    <div></div>
+                    <div></div>
+                    <div class="freq-display-box" style="align-items:center; justify-content:center;" onclick="switchMode('SELCAL_INPUT')">
+                        <div style="color:white; font-size:7px; margin-bottom:2px;">SELCAL ID</div>
+                        <div style="color:var(--text-cyan); font-size:11px; font-weight:bold;">${selcalCode}</div>
+                    </div>
+                </div>
+            `;
+        } 
+        else if (audioTab === 'Other') {
+            audioContent = `
+                <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 50px 0 130px;">
+                    <span>Volume</span><span>Control</span>
+                </div>
+                <div style="display: flex; gap: 8px; margin-bottom: 8px; padding-left: 5px;">
+                    <div class="item-btn" style="width: 65px; height: 35px;" onclick="toggleClicks()">
+                        <span style="font-size: 9px; color: white;">Clicks</span>
+                        <span style="font-size: 10px; color: var(--text-cyan); font-weight: bold; margin-top: 2px;">${clicksState}</span>
+                    </div>
+                    <div class="wedge-slider" style="width: 140px; height: 30px; align-self: center;" onpointerdown="handleVol('clicks', event)">
+                        <span class="wedge-text">${volumes.clicks}%</span>
+                        <div class="wedge-fill" style="width:${volumes.clicks}%"></div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px; padding-left: 5px;">
+                    <div class="item-btn ${micSelected === 'PA' ? 'on' : ''}" style="width: 65px; height: 35px;" onclick="setMic('PA')">
+                        <span style="font-size: 9px;">PA</span>
+                        <div class="status-line"></div>
+                    </div>
+                    <div style="flex: 1; background: black; border: 0.7px solid #444; border-radius: 4px; height: 35px;"></div>
+                </div>
+            `;
+        }
+
+        container.innerHTML = `
+            <div class="sub-header">
+                <div class="user-3d-btn" style="width:57px;">User<br><span style="color:var(--text-cyan)">Pilot</span></div>
+                <div class="tab-container">
+                    <div class="tab ${audioTab==='COM'?'active':''}" onclick="switchAudioTab('COM')">COM</div>
+                    <div class="tab ${audioTab==='NAV'?'active':''}" onclick="switchAudioTab('NAV')">NAV</div>
+                    <div class="tab ${audioTab==='Mission'?'active':''}" onclick="switchAudioTab('Mission')">Mission</div>
+                    <div class="tab ${audioTab==='Other'?'active':''}" onclick="switchAudioTab('Other')">Other</div>
+                </div>
+            </div>
+            <div class="panel-border">
+                ${audioContent}
+            </div>`;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" style="color:var(--active-blue)"><span>✥</span>Half</div><div class="nav-btn"><span>▲</span>Up</div><div class="nav-btn"><span>▼</span>Down</div>`;
+    }
+
+    function renderIntercomScreen(container, footer, title, centerLabel) {
+        title.innerText = "Intercom";
+        centerLabel.innerText = "CoPilot ICS Volume";
+        container.innerHTML = `
+            <div class="sub-header" style="justify-content: space-between; padding-bottom:5px;">
+                <div class="user-3d-btn" style="width:60px;">User<br><span style="color:var(--text-cyan)">CoPilot</span></div>
+                <div class="wedge-slider" style="flex:1; margin:0 8px;" onpointerdown="handleVol('intercom', event)">
+                    <span class="wedge-text">${volumes.intercom}%</span>
+                    <div class="wedge-fill" style="width:${volumes.intercom}%"></div>
+                </div>
+                <div class="item-btn ${icStates.Isolate?'on':''}" style="width:45px; height:37px;" onclick="toggleIsolate()">Isolate<div class="status-line"></div></div>
+                <div class="item-btn" style="width:40px; height:37px;" onclick="switchMode('VOX_MODE')">VOX<br><span style="color:var(--text-cyan)">${voxState.toUpperCase()}</span></div>
+            </div>
+            <div class="panel-border" style="padding-top:12px;">
+                <div class="intercom-grid">
+                    <div class="item-btn ${icStates.CoPilot?'on':''}" style="height:60px;" onclick="toggleIC('CoPilot')">👨‍✈️<br>CoPilot<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Pilot?'on':''}" style="height:60px;" onclick="toggleIC('Pilot')">Pilot<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Crew1?'on':''}" style="height:60px;" onclick="toggleIC('Crew1')">Crew 1<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Pass?'on':''}" style="height:60px;" onclick="toggleIC('Pass')">Pass<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Crew2?'on':''}" style="height:60px;" onclick="toggleIC('Crew2')">Crew 2<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.wICS?'on':''}" style="height:60px;" onclick="toggleIC('wICS')">wICS<div class="status-line"></div></div>
+                </div>
+                <div class="loop-row">
+                    <div class="item-btn ${icStates.Loop1?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop1')">Loop 1<br>Mission Crew<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Loop2?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop2')">Loop 2<br>All Pass<div class="status-line"></div></div>
+                    <div class="item-btn ${icStates.Loop5?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop5')">Loop 5<br>All<div class="status-line"></div></div>
+                </div>
+            </div>`;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Half</div>`;
+    }
+
+    function renderSelcalInputScreen(container, footer, title, centerLabel) {
+        title.innerText = "COM SELCAL";
+        centerLabel.innerText = "Data Entry";
+        
+        let displayVal = !hasStartedTyping ? selcalCode : selcalInput.padEnd(4, '_');
+
+        container.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center; padding-top:10px; height:100%;">
+                <div style="text-align:center; color:white; font-size:10px; font-weight:bold; margin-bottom:5px;">SELCAL ID</div>
+                <div class="input-row" style="margin-top:0; margin-bottom: 15px;">
+                    <div class="freq-box-main" style="width:140px; letter-spacing: 8px; font-size: 24px;">${displayVal}</div>
+                </div>
+                <div class="selcal-grid">
+                    ${['A','B','C','D','E', 'F','G','H','J','K', 'L','M','P','Q','R'].map(c => 
+                        `<div class="num-circle" style="width:45px; height:45px; font-size:16px;" onclick="addSelcalInput('${c}')">${c}</div>`
+                    ).join('')}
+                    <div class="item-btn" style="width:45px; height:45px;">🔍<br>Find</div>
+                    <div style="visibility:hidden"></div>
+                    <div class="num-circle" style="width:45px; height:45px; font-size:16px;" onclick="addSelcalInput('S')">S</div>
+                    <div style="visibility:hidden"></div>
+                    <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceSelcal()">⬅<br>Bksp</div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('AUDIO'); switchAudioTab('Mission');"><span>↩</span>Cancel</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmSelcal()"><span>↩</span>Enter</div>`;
+    }
+
+    function renderVoxModeScreen(container, footer, title, centerLabel) {
+        title.innerText = "Intercom";
+        centerLabel.innerText = "VOX Mode Selection";
+
+        let isManual = (voxState === 'Manual');
+        let sliderOpacity = isManual ? '1' : '0.3';
+        let pointerEvents = isManual ? 'auto' : 'none';
+
+        container.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center; padding-top:20px; height:100%; width:100%;">
+                <div style="color:white; font-size:12px; font-weight:bold; margin-bottom:15px; border-bottom:1px solid #555; width:90%; text-align:center; padding-bottom:5px;">ICS VOX MODE</div>
+                
+                <div style="display:flex; gap:10px; width:90%; justify-content:center; margin-bottom:25px;">
+                    ${['Off', 'Manual', 'Auto'].map(m => 
+                        `<div class="item-btn ${voxState === m ? 'on' : ''}" style="flex:1; height:45px; font-size:12px; font-weight:bold;" onclick="setVoxMode('${m}')">
+                            ${m.toUpperCase()}<div class="status-line"></div>
+                        </div>`
+                    ).join('')}
+                </div>
+
+                <div style="width:90%; opacity:${sliderOpacity}; pointer-events:${pointerEvents}; transition: opacity 0.3s ease;">
+                    <div style="font-size:9px; color:#ccc; margin-bottom:5px; text-align:left;">VOX SENSITIVITY (MANUAL)</div>
+                    <div class="wedge-slider" style="height:35px; border:1px solid #555; border-radius:4px; margin-bottom:10px;" onpointerdown="handleVol('vox', event)">
+                        <span class="wedge-text" style="font-size:12px; top:11px;">${volumes.vox}%</span>
+                        <div class="wedge-fill" style="width:${volumes.vox}%"></div>
+                    </div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('INTERCOM')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Half</div>`;
+    }
+
+    function renderHfControlScreen(container, footer, title, centerLabel) {
+        title.innerText = "HF";
+        centerLabel.innerText = "CoPilot HF1 Volume";
+        container.innerHTML = `
+            <div style="display:flex; flex-direction:column; gap:12px; height:100%; padding-top:5px;">
+                <div style="border: 1px solid var(--text-cyan); border-radius: 5px; background: #050505; display: flex; flex-direction: column; margin-bottom: 5px; padding: 5px;">
+                    <div style="position: relative; height: 45px; display: flex; justify-content: center; align-items: center;">
+                        <div style="position: absolute; top: 0; left: 5px; font-size: 9px; color: white;">Active</div>
+                        <div style="position: absolute; bottom: 0; left: 20px; font-size: 10px; color: white; font-weight: bold;">${hfState.emission}</div>
+                        <div style="font-size: 24px; color: white; font-weight: bold;">${freqs.hf.act}</div>
+                    </div>
+                    <div style="position: relative; height: 15px; display: flex; justify-content: center; align-items: center;">
+                        <div style="width: 100%; height: 1px; background: #555; position: absolute;"></div>
+                        <div style="background: #050505; padding: 0 5px; z-index: 1; color: #555; font-size: 10px;">▼</div>
+                    </div>
+                    <div style="position: relative; height: 50px; display: flex; justify-content: center; align-items: center;">
+                        <div style="position: absolute; top: -5px; left: 5px; font-size: 9px; color: white;">Standby</div>
+                        <div class="item-btn" style="width: 130px; height: 35px; border: 1px solid var(--text-cyan); background: transparent; color: var(--text-cyan); font-size: 18px; font-weight: bold; cursor: pointer;" onclick="switchMode('COM_INPUT', 'hf')">
+                            ${freqs.hf.stb}
+                        </div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-bottom: 2px;">
+                    <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfTuning()">
+                        <div style="font-size: 9px; color: white; margin-bottom: 3px;">Tuning Mode</div>
+                        <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.tuning}</div>
+                    </div>
+                    <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfEmission()">
+                        <div style="font-size: 9px; color: white; margin-bottom: 3px;">Emission Mode</div>
+                        <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.emission}</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 8px;">
+                    <div class="item-btn" style="width: 45px; height: 45px;">
+                        <div style="font-size: 16px; margin-bottom: 2px;">🔍</div>
+                        <div style="font-size: 8px; color: white;">Find</div>
+                    </div>
+                    <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfSql()">
+                        <div style="font-size: 9px; color: white; margin-bottom: 3px;">SQL LVL</div>
+                        <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.sql}</div>
+                    </div>
+                    <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfPwr()">
+                        <div style="font-size: 9px; color: white; margin-bottom: 3px;">XMIT PWR</div>
+                        <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.pwr}</div>
+                    </div>
+                    <div class="item-btn" style="width: 55px; height: 45px;" onclick="swapFreq('hf')">
+                        <div style="font-size: 12px; color: white; font-weight: bold;">↕ XFER</div>
+                    </div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('AUDIO')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" style="color:var(--active-blue)"><span>✥</span>Half</div>`;
+    }
+
+    function renderComInputScreen(container, footer, title) {
+        title.innerText = `${inputTarget.toUpperCase()} Standby`;
+        
+        let displayStr = currentInput;
+        if (hasStartedTyping) {
+            if (inputTarget === 'hf' && displayStr.length > 2 && !displayStr.includes('.')) {
+                displayStr = displayStr.slice(0, 2) + '.' + displayStr.slice(2);
+            } 
+            else if (inputTarget !== 'hf' && displayStr.length > 3 && !displayStr.includes('.')) {
+                displayStr = displayStr.slice(0, 3) + '.' + displayStr.slice(3);
+            }
+        }
+        
+        let displayVal = !hasStartedTyping ? freqs[inputTarget].stb : displayStr;
+        let activeFreqHtml = '';
+        
+        if (inputTarget.startsWith('nav')) {
+            activeFreqHtml = `
+                <div style="text-align:center; color:white; font-size:10px; font-weight:bold; margin-bottom:2px;">${inputTarget.toUpperCase()}</div>
+                <div style="text-align:center; color:white; font-size:11px; margin-bottom:10px;">
+                    Active Freq: <span style="color:var(--text-green); font-weight:bold;">${freqs[inputTarget].act}</span>
+                </div>
+            `;
+        }
+
+        container.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; padding-top:10px;">
+            ${activeFreqHtml}
+            <div class="input-row" style="margin-top:0;">
+                <div class="item-btn" style="width:45px; height:45px;">🔍<br>Find</div>
+                <div class="freq-box-main">${displayVal}</div>
+                <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceInput()">⬅<br>Bksp</div>
+            </div>
+            <div class="numpad-grid">
+                ${[1,2,3,4,5,6,7,8,9].map(n => `<div class="num-circle" onclick="addInput('${n}')">${n}</div>`).join('')}
+                <div></div><div class="num-circle" onclick="addInput('0')">0</div>
+                <div class="item-btn" style="height:55px; font-size:12px;" onclick="handleInputXfer()">↕ XFER</div>
+            </div></div>`;
+        
+        let backMode = inputTarget === 'hf' ? "'HF_CONTROL'" : "'AUDIO'";
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode(${backMode}, '${inputTarget}')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmInput()"><span>↩</span>Enter</div>`;
+    }
+
+    function renderXpdrModeScreen(container, footer, title, centerLabel) {
+        title.innerText = "Transponder";
+        centerLabel.innerText = "Transponder Mode";
+        container.innerHTML = `
+            <div style="display:flex; height:100%; padding-top:5px;">
+                <div style="flex:1; display:flex; flex-direction:column; gap:6px; border-right:1px solid #333; padding-right:10px;">
+                    <div style="color:white; font-size:10px; padding-bottom:3px; border-bottom:1px solid #555;">XPDR/TCAS Mode</div>
+                    ${['Auto', 'TA Only', 'Altitude Reporting', 'On', 'Standby'].map(m => 
+                        `<div class="item-btn ${xpdrState.mode === m ? 'on' : ''}" style="height:35px; font-size:9px;" onclick="setXpdrMode('${m}')">
+                            ${m.replace(' ', '<br>')}<div class="status-line"></div>
+                        </div>`
+                    ).join('')}
+                </div>
+                <div style="flex:1; display:flex; flex-direction:column; gap:15px; padding-left:10px; justify-content:flex-start; padding-top:20px;">
+                    <div class="item-btn" style="height:45px; font-size:10px;">Active<br><span style="color:var(--text-cyan); font-size:11px;">${xpdrState.active}</span></div>
+                    <div class="item-btn ${xpdrState.adsb ? 'on' : ''}" style="height:45px; font-size:10px;" onclick="toggleAdsb()">ADS-B TX<div class="status-line"></div></div>
+                    <div class="item-btn" style="height:45px; font-size:10px;">Flight ID<br><span style="color:var(--text-cyan); font-size:11px;">${xpdrState.flightId}</span></div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div>`;
+    }
+
+    function renderXpdrCodeScreen(container, footer, title, centerLabel) {
+        title.innerText = "Transponder 2";
+        centerLabel.innerText = "Data Entry";
+        let displayVal = !hasStartedTyping ? xpdrState.code : xpdrInput;
+        container.innerHTML = `
+            <div style="display:flex; flex-direction:column; align-items:center; padding-top:10px; height:100%;">
+                <div style="display:flex; gap:10px; margin-bottom:20px; align-items:center; width:100%; justify-content:center;">
+                    <div style="background:#0a0a0a; border:1px solid #444; width:120px; height:35px; display:flex; align-items:center; justify-content:center; color:var(--text-cyan); font-size:20px; font-weight:bold; border-radius:4px;">${displayVal}</div>
+                    <div class="item-btn" style="width:45px; height:35px;" onclick="backspaceXpdr()">←<br>BKSP</div>
+                </div>
+                <div class="xpdr-numpad-grid">
+                    ${[0,1,2,3,4,5,6,7].map(n => `<div class="num-circle" style="width:45px; height:45px;" onclick="addXpdrInput('${n}')">${n}</div>`).join('')}
+                </div>
+                <div style="display:flex; gap:10px; width:100%; justify-content:center; margin-top:10px;">
+                    <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="flashIdent()">IDENT</div>
+                    <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="setXpdrPreset('1200')">VFR</div>
+                    <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="setXpdrPreset('7700')">EMER</div>
+                </div>
+            </div>
+        `;
+        footer.innerHTML = `<div class="nav-btn" onclick="switchMode('XPDR_MODE')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmXpdr()"><span>↩</span>Enter</div>`;
+    }
+
+    // --- Main Content Renderer Route ---
     function renderContent() {
         const container = document.getElementById('mainContentArea');
         const footer = document.getElementById('footerNav');
@@ -508,491 +1036,18 @@
         const centerLabel = document.getElementById('center-label');
         container.innerHTML = '';
 
-        if (currentMode === 'HOME') {
-            title.innerText = "Home";
-            centerLabel.innerText = "CDU HOME";
-            
-            let gridHtml = `<div class="home-grid">`;
-            homeButtons.forEach(btn => {
-                const links = {
-                    'weather': "https://customwidgethosting.web.app/embed.html?ffCompiledSrc=https%3A%2F%2Fstorage.googleapis.com%2Fflutterflow-io-6f20.appspot.com%2Fbuild_outputs%2Fintegrated-flight-preparation-assistant-mlvjyo%2Fweb%2FQMZqWepPgY9jqDmcO2Uu%2Fmain.dart.js",
-                    'charts': "https://aim.koca.go.kr/eaipPub/Package/history-en-GB.html?language=ko_KR",
-                    'fpl': "https://thdenfl-source.github.io/Locus/",
-                    'serv': "https://thdenfl.tistory.com",
-                    'as565': "https://thdenfl-source.github.io/AS565/"
-                };
-
-                let isActiveBtn = ['weather', 'charts', 'fpl', 'serv', 'sys', 'perf', 'as565'].includes(btn.id);
-                let boxClass = isActiveBtn ? 'icon-box func-active' : 'icon-box';
-
-                if (links[btn.id]) {
-                    gridHtml += `
-                        <a href="${links[btn.id]}" target="_blank" class="home-icon-wrapper" style="text-decoration:none; color:inherit;">
-                            <div class="${boxClass}">${btn.icon}</div>
-                            <div class="icon-label">${btn.text}</div>
-                        </a>`;
-                } else {
-                    let clickAction = btn.id === 'sys' ? `onclick="switchMode('AUDIO'); switchAudioTab('COM');"` : (btn.id === 'perf' ? `onclick="switchMode('PERF')"` : '');
-                    gridHtml += `
-                        <div class="home-icon-wrapper" ${clickAction}>
-                            <div class="${boxClass}">${btn.icon}</div>
-                            <div class="icon-label">${btn.text}</div>
-                        </div>`;
-                }
-            });
-            gridHtml += `</div>`;
-            container.innerHTML = gridHtml;
-            
-            footer.innerHTML = `<div class="nav-btn"><span>✔️</span>INIT</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" onclick="switchMode('AUDIO'); switchAudioTab('COM');"><span>✥</span>Full</div>`;
-        } 
-        else if (currentMode === 'PERF') {
-            calculatePerformance(); 
-            
-            title.innerText = "Performance (Hover & Climb)";
-            centerLabel.innerText = "Flight Data";
-            
-            container.innerHTML = `
-                <div style="display:flex; justify-content:space-between; align-items:flex-end; padding:0 5px 5px 5px; border-bottom:1px solid #333; margin-bottom:10px;">
-                    <span style="color:white; font-size:10px; font-weight:bold;">CONDITIONS</span>
-                    <span style="color:white; font-size:10px; font-weight:bold;">RESULTS</span>
-                </div>
-                
-                <div style="display:flex; gap:8px; height:100%;">
-                    <div style="flex:1; display:flex; flex-direction:column; gap:8px; justify-content:flex-start;">
-                        <div>
-                            <div class="perf-label">ALTITUDE (FT)</div>
-                            <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'alt')">${perfData.alt}</div>
-                        </div>
-                        <div>
-                            <div class="perf-label">TEMP (OAT °C)</div>
-                            <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'temp')">${perfData.temp}</div>
-                        </div>
-                        <div>
-                            <div class="perf-label">GROSS WT (LBS)</div>
-                            <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'weight')">${perfData.weight}</div>
-                        </div>
-                        <div>
-                            <div class="perf-label">V/S (FPM)</div>
-                            <div class="perf-val-box" onclick="switchMode('PERF_INPUT', 'vs')">${perfData.vs}</div>
-                        </div>
-                    </div>
-                    
-                    <div style="width:1px; background:#333;"></div>
-
-                    <div style="flex:1.4; display:flex; flex-direction:column; justify-content:flex-start; gap: 6px;">
-                        <div style="display:flex; gap:5px;">
-                            <div style="flex:1;">
-                                <div class="perf-result-title">IGE TQ</div>
-                                <div class="perf-result-box" style="color:#0f0;">${perfResults.ige}%</div>
-                            </div>
-                            <div style="flex:1;">
-                                <div class="perf-result-title">OGE TQ</div>
-                                <div class="perf-result-box" style="color:#0f0;">${perfResults.oge}%</div>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:5px;">
-                            <div style="flex:1;">
-                                <div class="perf-result-title">IGE GO/NO-GO</div>
-                                <div class="perf-result-box" style="color:#ff9800;">${perfResults.ige_gonogo}%</div>
-                            </div>
-                            <div style="flex:1;">
-                                <div class="perf-result-title">OGE GO/NO-GO</div>
-                                <div class="perf-result-box" style="color:#ff9800;">${perfResults.oge_gonogo}%</div>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:5px;">
-                            <div style="flex:1;">
-                                <div class="perf-result-title">Vy (IAS)</div>
-                                <div class="perf-result-box" style="color:#fff;">${perfResults.vy} KT</div>
-                            </div>
-                            <div style="flex:1;">
-                                <div class="perf-result-title">V/S ∆TQ</div>
-                                <div class="perf-result-box" style="color:#fff;">${perfResults.vsTq}%</div>
-                            </div>
-                        </div>
-                        <div style="display:flex; gap:5px;">
-                            <div style="flex:1;">
-                                <div class="perf-result-title">MTA(30)</div>
-                                <div class="perf-result-box" style="color:var(--text-cyan); font-size:10.5px;">${perfResults.mta30}%</div>
-                            </div>
-                            <div style="flex:1;">
-                                <div class="perf-result-title">MTA(10)</div>
-                                <div class="perf-result-box" style="color:yellow; font-size:10.5px;">${perfResults.mta10}%</div>
-                            </div>
-                            <div style="flex:1;">
-                                <div class="perf-result-title">MTA(2.5)</div>
-                                <div class="perf-result-box" style="color:#f44336; font-size:10.5px;">${perfResults.mta25}%</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div>`;
-        }
-        else if (currentMode === 'PERF_INPUT') {
-            let titleText = inputTarget === 'alt' ? 'ALTITUDE' : 
-                            (inputTarget === 'temp' ? 'TEMPERATURE' : 
-                            (inputTarget === 'vs' ? 'VERTICAL SPEED (FPM)' : 'GROSS WEIGHT'));
-            title.innerText = `${titleText} ENTRY`;
-            
-            let displayVal = !hasStartedTyping ? perfData[inputTarget] : currentInput;
-            if (displayVal === "") displayVal = "0";
-
-            container.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; padding-top:20px;">
-                <div class="input-row" style="margin-top:0;">
-                    <div class="freq-box-main" style="width:150px;">${displayVal}</div>
-                    <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceInput()">⬅<br>Bksp</div>
-                </div>
-                <div class="numpad-grid" style="margin-top:10px;">
-                    ${[1,2,3,4,5,6,7,8,9].map(n => `<div class="num-circle" onclick="addInput('${n}')">${n}</div>`).join('')}
-                    <div class="num-circle" onclick="addInput('-')">-</div>
-                    <div class="num-circle" onclick="addInput('0')">0</div>
-                    <div></div>
-                </div></div>`;
-            
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('PERF')"><span>↩</span>Cancel</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div></div><div class="nav-btn enter-btn-blue" onclick="confirmPerfInput()"><span>↩</span>Enter</div>`;
-        }
-        else if (currentMode === 'AUDIO') {
-            title.innerText = "Audio & Radios";
-            centerLabel.innerText = `CoPilot ${audioTab === 'Mission' ? 'VHF-FM' : (audioTab === 'Other' ? 'PA' : inputTarget.toUpperCase())} Volume`;
-            
-            let audioContent = '';
-
-            if (audioTab === 'COM') {
-                audioContent = `
-                    <div style="display:flex; justify-content:space-between; font-size:7px; color:#888; margin-bottom:5px; padding: 0 60px 0 100px;">
-                        <span>Volume</span><span>Control</span>
-                    </div>
-                    ${renderAudioRow('COM1', 'com1')} 
-                    ${renderAudioRow('COM2', 'com2')} 
-                    ${renderAudioRow('U/VHF', 'uvhf')}
-                    <div class="volume-row">
-                        <div class="item-btn">▶<br>Playback</div>
-                        <div class="wedge-slider" style="grid-column: span 2;" onpointerdown="handleVol('pb', event)">
-                            <span class="wedge-text">${volumes.pb}%</span>
-                            <div class="wedge-fill" style="width:${volumes.pb}%"></div>
-                        </div>
-                        <div style="display:flex; gap:3px;">
-                            <button class="item-btn" style="width:30px; height:35px;">|◀</button>
-                            <button class="item-btn" style="width:30px; height:35px;">▶|</button>
-                        </div>
-                    </div>
-                `;
-            } 
-            else if (audioTab === 'NAV') {
-                audioContent = `
-                    <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 70px 0 80px;">
-                        <span>Volume</span><span>Control</span>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 60px 1fr 80px; align-items: center; margin-bottom: 7px; gap: 6px;">
-                        <div class="item-btn ${monStates.speaker?'on':''}" onclick="toggleMon('speaker')">Speaker<div class="status-line"></div></div>
-                        <div class="wedge-slider" onpointerdown="handleVol('speaker', event)">
-                            <span class="wedge-text">${volumes.speaker}%</span>
-                            <div class="wedge-fill" style="width:${volumes.speaker}%"></div>
-                        </div>
-                        <div></div>
-                    </div>
-                    <div style="display: grid; grid-template-columns: 60px 1fr 80px; align-items: center; margin-bottom: 7px; gap: 6px;">
-                        <div class="item-btn">▶<br>Playback</div>
-                        <div class="wedge-slider" onpointerdown="handleVol('pb', event)">
-                            <span class="wedge-text">${volumes.pb}%</span>
-                            <div class="wedge-fill" style="width:${volumes.pb}%"></div>
-                        </div>
-                        <div style="display:flex; gap:4px;">
-                            <button class="item-btn" style="flex:1; height:35px; font-size:9px;">|◀◀</button>
-                            <button class="item-btn" style="flex:1; height:35px; font-size:9px;">▶▶|</button>
-                        </div>
-                    </div>
-                    ${renderNavRow('NAV1', 'nav1')}
-                    ${renderNavRow('NAV2', 'nav2')}
-                `;
-            }
-            else if (audioTab === 'Mission') {
-                audioContent = `
-                    <div style="margin-bottom: 6px;">
-                        <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 45px 0 130px;">
-                            <span>Volume</span><span>Control</span>
-                        </div>
-                        ${renderMissionRow('VHF-FM', 'vhffm')}
-                    </div>
-                    <div style="margin-bottom: 6px;">
-                        ${renderMissionRow('HF', 'hf')}
-                    </div>
-                    <div class="volume-row">
-                        <div class="item-btn ${monStates.selcal?'on':''}" onclick="toggleMon('selcal')">SELCAL<div class="status-line"></div></div>
-                        <div></div>
-                        <div></div>
-                        <div class="freq-display-box" style="align-items:center; justify-content:center;" onclick="switchMode('SELCAL_INPUT')">
-                            <div style="color:white; font-size:7px; margin-bottom:2px;">SELCAL ID</div>
-                            <div style="color:var(--text-cyan); font-size:11px; font-weight:bold;">${selcalCode}</div>
-                        </div>
-                    </div>
-                `;
-            } 
-            else if (audioTab === 'Other') {
-                audioContent = `
-                    <div style="display:flex; justify-content:space-between; font-size:7px; color:#ccc; margin-bottom:4px; padding: 0 50px 0 130px;">
-                        <span>Volume</span><span>Control</span>
-                    </div>
-                    <div style="display: flex; gap: 8px; margin-bottom: 8px; padding-left: 5px;">
-                        <div class="item-btn" style="width: 65px; height: 35px;" onclick="toggleClicks()">
-                            <span style="font-size: 9px; color: white;">Clicks</span>
-                            <span style="font-size: 10px; color: var(--text-cyan); font-weight: bold; margin-top: 2px;">${clicksState}</span>
-                        </div>
-                        <div class="wedge-slider" style="width: 140px; height: 30px; align-self: center;" onpointerdown="handleVol('clicks', event)">
-                            <span class="wedge-text">${volumes.clicks}%</span>
-                            <div class="wedge-fill" style="width:${volumes.clicks}%"></div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 8px; padding-left: 5px;">
-                        <div class="item-btn ${micSelected === 'PA' ? 'on' : ''}" style="width: 65px; height: 35px;" onclick="setMic('PA')">
-                            <span style="font-size: 9px;">PA</span>
-                            <div class="status-line"></div>
-                        </div>
-                        <div style="flex: 1; background: black; border: 0.7px solid #444; border-radius: 4px; height: 35px;"></div>
-                    </div>
-                `;
-            }
-
-            container.innerHTML = `
-                <div class="sub-header">
-                    <div class="user-3d-btn" style="width:57px;">User<br><span style="color:var(--text-cyan)">Pilot</span></div>
-                    <div class="tab-container">
-                        <div class="tab ${audioTab==='COM'?'active':''}" onclick="switchAudioTab('COM')">COM</div>
-                        <div class="tab ${audioTab==='NAV'?'active':''}" onclick="switchAudioTab('NAV')">NAV</div>
-                        <div class="tab ${audioTab==='Mission'?'active':''}" onclick="switchAudioTab('Mission')">Mission</div>
-                        <div class="tab ${audioTab==='Other'?'active':''}" onclick="switchAudioTab('Other')">Other</div>
-                    </div>
-                </div>
-                <div class="panel-border">
-                    ${audioContent}
-                </div>`;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" style="color:var(--active-blue)"><span>✥</span>Half</div><div class="nav-btn"><span>▲</span>Up</div><div class="nav-btn"><span>▼</span>Down</div>`;
-        }
-        else if (currentMode === 'INTERCOM') {
-            title.innerText = "Intercom";
-            centerLabel.innerText = "CoPilot ICS Volume";
-            container.innerHTML = `
-                <div class="sub-header" style="justify-content: space-between; padding-bottom:5px;">
-                    <div class="user-3d-btn" style="width:60px;">User<br><span style="color:var(--text-cyan)">CoPilot</span></div>
-                    <div class="wedge-slider" style="flex:1; margin:0 8px;" onpointerdown="handleVol('intercom', event)">
-                        <span class="wedge-text">${volumes.intercom}%</span>
-                        <div class="wedge-fill" style="width:${volumes.intercom}%"></div>
-                    </div>
-                    <div class="item-btn ${icStates.Isolate?'on':''}" style="width:45px; height:37px;" onclick="toggleIsolate()">Isolate<div class="status-line"></div></div>
-                    <div class="item-btn" style="width:40px; height:37px;" onclick="switchMode('VOX_MODE')">VOX<br><span style="color:var(--text-cyan)">${voxState.toUpperCase()}</span></div>
-                </div>
-                <div class="panel-border" style="padding-top:12px;">
-                    <div class="intercom-grid">
-                        <div class="item-btn ${icStates.CoPilot?'on':''}" style="height:60px;" onclick="toggleIC('CoPilot')">👨‍✈️<br>CoPilot<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Pilot?'on':''}" style="height:60px;" onclick="toggleIC('Pilot')">Pilot<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Crew1?'on':''}" style="height:60px;" onclick="toggleIC('Crew1')">Crew 1<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Pass?'on':''}" style="height:60px;" onclick="toggleIC('Pass')">Pass<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Crew2?'on':''}" style="height:60px;" onclick="toggleIC('Crew2')">Crew 2<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.wICS?'on':''}" style="height:60px;" onclick="toggleIC('wICS')">wICS<div class="status-line"></div></div>
-                    </div>
-                    <div class="loop-row">
-                        <div class="item-btn ${icStates.Loop1?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop1')">Loop 1<br>Mission Crew<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Loop2?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop2')">Loop 2<br>All Pass<div class="status-line"></div></div>
-                        <div class="item-btn ${icStates.Loop5?'on':''}" style="flex:1; height:45px;" onclick="toggleIC('Loop5')">Loop 5<br>All<div class="status-line"></div></div>
-                    </div>
-                </div>`;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Half</div>`;
-        }
-        else if (currentMode === 'SELCAL_INPUT') {
-            title.innerText = "COM SELCAL";
-            centerLabel.innerText = "Data Entry";
-            
-            let displayVal = !hasStartedTyping ? selcalCode : selcalInput.padEnd(4, '_');
-
-            container.innerHTML = `
-                <div style="display:flex; flex-direction:column; align-items:center; padding-top:10px; height:100%;">
-                    <div style="text-align:center; color:white; font-size:10px; font-weight:bold; margin-bottom:5px;">SELCAL ID</div>
-                    <div class="input-row" style="margin-top:0; margin-bottom: 15px;">
-                        <div class="freq-box-main" style="width:140px; letter-spacing: 8px; font-size: 24px;">${displayVal}</div>
-                    </div>
-                    <div class="selcal-grid">
-                        ${['A','B','C','D','E', 'F','G','H','J','K', 'L','M','P','Q','R'].map(c => 
-                            `<div class="num-circle" style="width:45px; height:45px; font-size:16px;" onclick="addSelcalInput('${c}')">${c}</div>`
-                        ).join('')}
-                        <div class="item-btn" style="width:45px; height:45px;">🔍<br>Find</div>
-                        <div style="visibility:hidden"></div>
-                        <div class="num-circle" style="width:45px; height:45px; font-size:16px;" onclick="addSelcalInput('S')">S</div>
-                        <div style="visibility:hidden"></div>
-                        <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceSelcal()">⬅<br>Bksp</div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('AUDIO'); switchAudioTab('Mission');"><span>↩</span>Cancel</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmSelcal()"><span>↩</span>Enter</div>`;
-        }
-        else if (currentMode === 'VOX_MODE') {
-            title.innerText = "Intercom";
-            centerLabel.innerText = "VOX Mode Selection";
-
-            let isManual = (voxState === 'Manual');
-            let sliderOpacity = isManual ? '1' : '0.3';
-            let pointerEvents = isManual ? 'auto' : 'none';
-
-            container.innerHTML = `
-                <div style="display:flex; flex-direction:column; align-items:center; padding-top:20px; height:100%; width:100%;">
-                    <div style="color:white; font-size:12px; font-weight:bold; margin-bottom:15px; border-bottom:1px solid #555; width:90%; text-align:center; padding-bottom:5px;">ICS VOX MODE</div>
-                    
-                    <div style="display:flex; gap:10px; width:90%; justify-content:center; margin-bottom:25px;">
-                        ${['Off', 'Manual', 'Auto'].map(m => 
-                            `<div class="item-btn ${voxState === m ? 'on' : ''}" style="flex:1; height:45px; font-size:12px; font-weight:bold;" onclick="setVoxMode('${m}')">
-                                ${m.toUpperCase()}<div class="status-line"></div>
-                            </div>`
-                        ).join('')}
-                    </div>
-
-                    <div style="width:90%; opacity:${sliderOpacity}; pointer-events:${pointerEvents}; transition: opacity 0.3s ease;">
-                        <div style="font-size:9px; color:#ccc; margin-bottom:5px; text-align:left;">VOX SENSITIVITY (MANUAL)</div>
-                        <div class="wedge-slider" style="height:35px; border:1px solid #555; border-radius:4px; margin-bottom:10px;" onpointerdown="handleVol('vox', event)">
-                            <span class="wedge-text" style="font-size:12px; top:11px;">${volumes.vox}%</span>
-                            <div class="wedge-fill" style="width:${volumes.vox}%"></div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('INTERCOM')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Half</div>`;
-        }
-        else if (currentMode === 'HF_CONTROL') {
-            title.innerText = "HF";
-            centerLabel.innerText = "CoPilot HF1 Volume";
-            container.innerHTML = `
-                <div style="display:flex; flex-direction:column; gap:12px; height:100%; padding-top:5px;">
-                    <div style="border: 1px solid var(--text-cyan); border-radius: 5px; background: #050505; display: flex; flex-direction: column; margin-bottom: 5px; padding: 5px;">
-                        <div style="position: relative; height: 45px; display: flex; justify-content: center; align-items: center;">
-                            <div style="position: absolute; top: 0; left: 5px; font-size: 9px; color: white;">Active</div>
-                            <div style="position: absolute; bottom: 0; left: 20px; font-size: 10px; color: white; font-weight: bold;">${hfState.emission}</div>
-                            <div style="font-size: 24px; color: white; font-weight: bold;">${freqs.hf.act}</div>
-                        </div>
-                        <div style="position: relative; height: 15px; display: flex; justify-content: center; align-items: center;">
-                            <div style="width: 100%; height: 1px; background: #555; position: absolute;"></div>
-                            <div style="background: #050505; padding: 0 5px; z-index: 1; color: #555; font-size: 10px;">▼</div>
-                        </div>
-                        <div style="position: relative; height: 50px; display: flex; justify-content: center; align-items: center;">
-                            <div style="position: absolute; top: -5px; left: 5px; font-size: 9px; color: white;">Standby</div>
-                            <div class="item-btn" style="width: 130px; height: 35px; border: 1px solid var(--text-cyan); background: transparent; color: var(--text-cyan); font-size: 18px; font-weight: bold; cursor: pointer;" onclick="switchMode('COM_INPUT', 'hf')">
-                                ${freqs.hf.stb}
-                            </div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 10px; margin-bottom: 2px;">
-                        <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfTuning()">
-                            <div style="font-size: 9px; color: white; margin-bottom: 3px;">Tuning Mode</div>
-                            <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.tuning}</div>
-                        </div>
-                        <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfEmission()">
-                            <div style="font-size: 9px; color: white; margin-bottom: 3px;">Emission Mode</div>
-                            <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.emission}</div>
-                        </div>
-                    </div>
-                    <div style="display: flex; gap: 8px;">
-                        <div class="item-btn" style="width: 45px; height: 45px;">
-                            <div style="font-size: 16px; margin-bottom: 2px;">🔍</div>
-                            <div style="font-size: 8px; color: white;">Find</div>
-                        </div>
-                        <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfSql()">
-                            <div style="font-size: 9px; color: white; margin-bottom: 3px;">SQL LVL</div>
-                            <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.sql}</div>
-                        </div>
-                        <div class="item-btn" style="flex: 1; height: 45px;" onclick="toggleHfPwr()">
-                            <div style="font-size: 9px; color: white; margin-bottom: 3px;">XMIT PWR</div>
-                            <div style="font-size: 12px; color: var(--text-cyan); font-weight: bold;">${hfState.pwr}</div>
-                        </div>
-                        <div class="item-btn" style="width: 55px; height: 45px;" onclick="swapFreq('hf')">
-                            <div style="font-size: 12px; color: white; font-weight: bold;">↕ XFER</div>
-                        </div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('AUDIO')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn" style="color:var(--active-blue)"><span>✥</span>Half</div>`;
-        }
-        else if (currentMode === 'COM_INPUT') {
-            title.innerText = `${inputTarget.toUpperCase()} Standby`;
-            
-            let displayStr = currentInput;
-            if (hasStartedTyping) {
-                if (inputTarget === 'hf' && displayStr.length > 2 && !displayStr.includes('.')) {
-                    displayStr = displayStr.slice(0, 2) + '.' + displayStr.slice(2);
-                } 
-                else if (inputTarget !== 'hf' && displayStr.length > 3 && !displayStr.includes('.')) {
-                    displayStr = displayStr.slice(0, 3) + '.' + displayStr.slice(3);
-                }
-            }
-            
-            let displayVal = !hasStartedTyping ? freqs[inputTarget].stb : displayStr;
-            let activeFreqHtml = '';
-            
-            if (inputTarget.startsWith('nav')) {
-                activeFreqHtml = `
-                    <div style="text-align:center; color:white; font-size:10px; font-weight:bold; margin-bottom:2px;">${inputTarget.toUpperCase()}</div>
-                    <div style="text-align:center; color:white; font-size:11px; margin-bottom:10px;">
-                        Active Freq: <span style="color:var(--text-green); font-weight:bold;">${freqs[inputTarget].act}</span>
-                    </div>
-                `;
-            }
-
-            container.innerHTML = `<div style="display:flex; flex-direction:column; align-items:center; padding-top:10px;">
-                ${activeFreqHtml}
-                <div class="input-row" style="margin-top:0;">
-                    <div class="item-btn" style="width:45px; height:45px;">🔍<br>Find</div>
-                    <div class="freq-box-main">${displayVal}</div>
-                    <div class="item-btn" style="width:45px; height:45px;" onclick="backspaceInput()">⬅<br>Bksp</div>
-                </div>
-                <div class="numpad-grid">
-                    ${[1,2,3,4,5,6,7,8,9].map(n => `<div class="num-circle" onclick="addInput('${n}')">${n}</div>`).join('')}
-                    <div></div><div class="num-circle" onclick="addInput('0')">0</div>
-                    <div class="item-btn" style="height:50px; font-size:12px;" onclick="handleInputXfer()">↕ XFER</div>
-                </div></div>`;
-            
-            let backMode = inputTarget === 'hf' ? "'HF_CONTROL'" : "'AUDIO'";
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode(${backMode}, '${inputTarget}')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmInput()"><span>↩</span>Enter</div>`;
-        }
-        else if (currentMode === 'XPDR_MODE') {
-            title.innerText = "Transponder";
-            centerLabel.innerText = "Transponder Mode";
-            container.innerHTML = `
-                <div style="display:flex; height:100%; padding-top:5px;">
-                    <div style="flex:1; display:flex; flex-direction:column; gap:6px; border-right:1px solid #333; padding-right:10px;">
-                        <div style="color:white; font-size:10px; padding-bottom:3px; border-bottom:1px solid #555;">XPDR/TCAS Mode</div>
-                        ${['Auto', 'TA Only', 'Altitude Reporting', 'On', 'Standby'].map(m => 
-                            `<div class="item-btn ${xpdrState.mode === m ? 'on' : ''}" style="height:35px; font-size:9px;" onclick="setXpdrMode('${m}')">
-                                ${m.replace(' ', '<br>')}<div class="status-line"></div>
-                            </div>`
-                        ).join('')}
-                    </div>
-                    <div style="flex:1; display:flex; flex-direction:column; gap:15px; padding-left:10px; justify-content:flex-start; padding-top:20px;">
-                        <div class="item-btn" style="height:45px; font-size:10px;">Active<br><span style="color:var(--text-cyan); font-size:11px;">${xpdrState.active}</span></div>
-                        <div class="item-btn ${xpdrState.adsb ? 'on' : ''}" style="height:45px; font-size:10px;" onclick="toggleAdsb()">ADS-B TX<div class="status-line"></div></div>
-                        <div class="item-btn" style="height:45px; font-size:10px;">Flight ID<br><span style="color:var(--text-cyan); font-size:11px;">${xpdrState.flightId}</span></div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('HOME')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div>`;
-        }
-        else if (currentMode === 'XPDR_CODE') {
-            title.innerText = "Transponder 2";
-            centerLabel.innerText = "Data Entry";
-            let displayVal = !hasStartedTyping ? xpdrState.code : xpdrInput;
-            container.innerHTML = `
-                <div style="display:flex; flex-direction:column; align-items:center; padding-top:10px; height:100%;">
-                    <div style="display:flex; gap:10px; margin-bottom:20px; align-items:center; width:100%; justify-content:center;">
-                        <div style="background:#0a0a0a; border:1px solid #444; width:120px; height:35px; display:flex; align-items:center; justify-content:center; color:var(--text-cyan); font-size:20px; font-weight:bold; border-radius:4px;">${displayVal}</div>
-                        <div class="item-btn" style="width:45px; height:35px;" onclick="backspaceXpdr()">←<br>BKSP</div>
-                    </div>
-                    <div class="xpdr-numpad-grid">
-                        ${[0,1,2,3,4,5,6,7].map(n => `<div class="num-circle" style="width:45px; height:45px;" onclick="addXpdrInput('${n}')">${n}</div>`).join('')}
-                    </div>
-                    <div style="display:flex; gap:10px; width:100%; justify-content:center; margin-top:10px;">
-                        <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="flashIdent()">IDENT</div>
-                        <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="setXpdrPreset('1200')">VFR</div>
-                        <div class="item-btn" style="flex:1; height:35px; font-size:10px;" onclick="setXpdrPreset('7700')">EMER</div>
-                    </div>
-                </div>
-            `;
-            footer.innerHTML = `<div class="nav-btn" onclick="switchMode('XPDR_MODE')"><span>↩</span>Back</div><div class="nav-btn" onclick="switchMode('HOME')"><span>🏠</span>Home</div><div class="nav-btn"><span>✉</span>Msg</div><div class="nav-btn"><span>✥</span>Full</div><div class="nav-btn enter-btn-blue" onclick="confirmXpdr()"><span>↩</span>Enter</div>`;
+        switch(currentMode) {
+            case 'HOME': renderHomeScreen(container, footer, title, centerLabel); break;
+            case 'PERF': renderPerfScreen(container, footer, title, centerLabel); break;
+            case 'PERF_INPUT': renderPerfInputScreen(container, footer, title); break;
+            case 'AUDIO': renderAudioScreen(container, footer, title, centerLabel); break;
+            case 'INTERCOM': renderIntercomScreen(container, footer, title, centerLabel); break;
+            case 'SELCAL_INPUT': renderSelcalInputScreen(container, footer, title, centerLabel); break;
+            case 'VOX_MODE': renderVoxModeScreen(container, footer, title, centerLabel); break;
+            case 'HF_CONTROL': renderHfControlScreen(container, footer, title, centerLabel); break;
+            case 'COM_INPUT': renderComInputScreen(container, footer, title); break;
+            case 'XPDR_MODE': renderXpdrModeScreen(container, footer, title, centerLabel); break;
+            case 'XPDR_CODE': renderXpdrCodeScreen(container, footer, title, centerLabel); break;
         }
 
         updateHeaderUI();
@@ -1267,20 +1322,6 @@
 
     // 초기 화면 크기 자동 조절 연동
     window.addEventListener('resize', adjustScale);
-    function adjustScale() {
-        const frame = document.querySelector('.cdu-frame');
-        const screenWidth = window.innerWidth;
-        const baseWidth = 370; 
-        
-        let targetScale = 1.37;
-        let maxWidth = screenWidth * 0.92; 
-        
-        if (baseWidth * targetScale > maxWidth) {
-            targetScale = maxWidth / baseWidth;
-        }
-        
-        frame.style.transform = `scale(${targetScale})`;
-    }
 
     window.onload = () => {
         adjustScale();
